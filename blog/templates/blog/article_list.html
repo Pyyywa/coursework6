@@ -1,0 +1,27 @@
+{% extends 'mail/base.html' %}
+{% block content %}
+<div class="col-12">
+    <div class="row">
+        <div class="col-6 mx-auto text-left"">
+            <a href="{% url 'blog:create' %}" class="btn btn-primary my-2">Добавить материал</a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row text-start">
+        {% if object_list %}
+        {% for object in object_list %}
+        <div class="col-lg-4 mb-3 ml-10">
+            <h2>{{ object.title }}</h2>
+            <p>{{ object.body|slice:100 }}</p>
+            <p>
+                <a class="btn btn-secondary" href="{% url 'blog:view' object.pk %}">Смотреть подробнее</a>
+            </p>
+        </div>
+        {% endfor %}
+        {% else %}
+            <h4>Статей нет, но Вы можете что-нибудь написать.</h4>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

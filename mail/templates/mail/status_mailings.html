@@ -1,0 +1,48 @@
+{% extends 'mail/base.html' %}
+
+{% block title %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="width: 95%;">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2" style="display: flex; align-items: center;">User's mailing settings</h1>
+    </div>
+    {% endblock %}
+
+    {% block content %}
+
+    <div class="row text-center">
+        <table class="table table-striped-columns">
+            <thead>
+            <tr>
+                <th scope="col">PK</th>
+                <th scope="col">Time</th>
+                <th scope="col">Period</th>
+                <th scope="col">Status</th>
+                <th scope="col">Message</th>
+                <th scope="col">Email / Name</th>
+                <th scope="col">Owner</th>
+                {% for object in object_list|dictsort:"user_id" %}
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">{{ object.pk }}</th>
+                <td>{{ object.time }}</td>
+                <td>{{ object.get_period_display }}</td>
+                <td>
+                    <a href="{% url 'mail:users_mailing_settings_status_update' pk=object.pk %}">{{
+                        object.get_status_display }}</a>
+                </td>
+                <td style="word-wrap: break-word; max-width: 300px;">{{ object.message }}
+                </td>
+                <td style="word-wrap: break-word; max-width: 300px;">
+                    {% for client in object.client.all %}
+                    {{ client.email }} / {{ client.first_name }} {{ client.last_name }}<br>
+                    {% endfor %}
+                </td>
+                <td>{{ object.user }}</td>
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'mail/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="col-12 mb-4">
+        <h3 align="center" style="color:Black mb-4">Клиенты сервиса:</h3>
+    </div>
+
+    <div class="row text-center">
+        {% for object in object_list %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header"></div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li>{{object.email}}</li>
+                    </ul>
+                    <br>
+                    <div class="btn-group">
+                        <a class="btn btn-outline-secondary" href="{% url 'users:users_activity' object.pk %}">Редактировать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

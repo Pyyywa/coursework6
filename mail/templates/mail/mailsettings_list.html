@@ -1,0 +1,45 @@
+{% extends 'mail/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="col-12 mb-4">
+        <h3 align="center" style="color:Black mb-4">Рассылки:</h3>
+    </div>
+    <a class="btn btn-outline-primary mb-4" href="{% url 'mail:message_create' %}">Создать сообщение для рассылки</a>
+
+    {% if perms.mail.add_mailsettings %}
+    <a class="btn btn-outline-primary mb-4" href="{% url 'mail:create' %}">Создать рассылку</a>
+    {% endif %}
+</div>
+
+<div class="row text-center">
+    {% for object in object_list %}
+    <div class="col-6">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">Статус: {{object.get_status_display}}</div>
+            <div class="card-body">
+                <ul class="list-unstyled mt-4 mb-4 text-start m-3">
+                    <li> {{object.start_time}} | {{object.end_time}}</li>
+                    <li> Пользователь: {{object.user}}</li>
+                    <li> {{object.message|truncatechars:60}}</li>
+                </ul>
+                <br>
+                <div class="btn-group">
+                    {% if perms.mail.change_mailsettings %}
+                    <a class="btn btn-outline-secondary" href="{% url 'mail:update' object.pk %}">Редактировать</a>
+                    {% endif %}
+                    {% if perms.mail.delete_mailsettings %}
+                    <a class="btn btn-outline-danger" href="{% url 'mail:delete' object.pk %}">Удалить</a>
+                    {% endif %}
+                    <a class="btn btn-outline-info" href="{% url 'mail:mail_log' object.pk %}">История</a>
+                    {% if perms.mail.set_status %}
+                    <a class="btn btn-outline-info" href="{% url 'mail:status_update' object.pk %}">Изменить статус</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

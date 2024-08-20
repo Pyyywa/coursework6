@@ -1,0 +1,25 @@
+{% extends 'mail/base.html' %}
+{% block content %}
+
+<div class="row text-center">
+    <table class="table table-striped-columns">
+        <thead>
+        <tr>
+            <th scope="col">Статус</th>
+            <th scope="col">Дата отправки</th>
+            <th scope="col">Ответ сервера</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in object_list|dictsortreversed:"last_try" %}
+        <tr>
+            <td>{{ object.status }}</td>
+            <td>{{ object.last_try }}</td>
+            <td>{{ object.answer_server }}</td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock %}

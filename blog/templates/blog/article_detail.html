@@ -1,0 +1,26 @@
+{% extends 'mail/base.html' %}
+{% load my_tags %}
+{% block content %}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <a href="{% url 'blog:create' %}" class="btn btn-primary my-2">Добавить материал</a>
+        <a href="{% url 'blog:list' %}" class="btn btn-primary my-2">К статьям:</a>
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">{{ object.title }}</h1>
+                    <div class="col-6">
+                        <img src="{% mediapath object.preview %}" style="height: 300px">
+                    </div>
+                    <p align="left">{{ object.body }}</p>
+                    <a href="{% url 'blog:update' object.pk %}" class="btn btn-primary my-2">Редактирование</a>
+                    <a href="{% url 'blog:delete' object.pk %}" class="btn btn-primary my-2">Удалить</a>
+                    <h6>Просмотры: {{ object.views_count }}</h6>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+{% endblock %}

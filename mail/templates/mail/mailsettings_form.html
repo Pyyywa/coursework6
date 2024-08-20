@@ -1,0 +1,26 @@
+{% extends 'mail/base.html' %}
+{% block content %}
+{{ f.errors }}
+<form method="post" class="row" enctype="multipart/form-data">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">
+                Добавление рассылки
+            </div>
+            <div class="card-body">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-success">
+                    {% if object %}
+                    Сохранить
+                    {% else %}
+                    Создать
+                    {% endif %}
+                </button>
+                <a class="p-2 btn btn-outline-primary" href="{% url 'mail:list' %}">Назад</a>
+            </div>
+        </div>
+    </div>
+
+</form>
+{% endblock %}

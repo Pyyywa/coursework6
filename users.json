@@ -1,0 +1,84 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$O1MLH53jKgIQAUY4yDQkIX$IW52evNZDdstHVUNE2OlSMKds5l5px9njyxSM7V6J6M=",
+      "last_login": "2024-10-09T08:42:24.589Z",
+      "is_superuser": true,
+      "first_name": "admin",
+      "last_name": "admin",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-10-07T17:48:20Z",
+      "email": "admin@test.com",
+      "phone": null,
+      "verification_key": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$XqpVXLlfOTjaqiIaE7RrBb$O+brpY5ufrBF4g5WwjGn+cDeYFjXotyV8yCCdW4RkrY=",
+      "last_login": "2024-10-09T08:27:32.354Z",
+      "is_superuser": false,
+      "first_name": "user2",
+      "last_name": "user2",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-08-09T07:31:25Z",
+      "email": "user2@test.com",
+      "phone": null,
+      "verification_key": "ESMTnwrGqQ",
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$rwpGtfz28a613BQUFcZYKM$+EFnrnkDSiAqpsL+XkNCMk5UOpFBeBF7E8zdHWhJDns=",
+      "last_login": "2024-08-09T08:40:45.707Z",
+      "is_superuser": false,
+      "first_name": "Manager",
+      "last_name": "Manager",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-08-09T07:32:12Z",
+      "email": "manager@test.com",
+      "phone": null,
+      "verification_key": "YLYw9YYfEE",
+      "groups": [
+        2
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$iCpbpbbSClmd8Zm2v72QLv$oIPz1fAa7zWxCs6oVwOLcLNZ+ifOGuyFGsLYn3H5JD8=",
+      "last_login": "2024-10-09T08:19:23.369Z",
+      "is_superuser": false,
+      "first_name": "user1",
+      "last_name": "user1",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-08-09T07:33:32Z",
+      "email": "user1@test.com",
+      "phone": null,
+      "verification_key": "g8cf738c8B",
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  }
+]

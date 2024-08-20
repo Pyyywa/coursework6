@@ -1,0 +1,40 @@
+{% extends 'mail/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="col-12 mb-4">
+        <h3 align="center" style="color:Black mb-4">Клиенты:</h3>
+        <a class="btn btn-outline-primary" href="{% url 'mail:client_create' %}">Добавить клиента</a>
+    </div>
+
+    <div class="row text-center">
+        {% for object in object_list %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header"></div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li>
+                            ФИО: {{object.first_name}}
+                            {{object.last_name}} {{object.surname}}
+                        </li>
+                        <li>{{object.email}}</li>
+                    </ul>
+                    <br>
+                    <div class="btn-group">
+                        <a class="btn btn-outline-secondary"
+                           href="{% url 'mail:client_update' object.pk %}">Редактировать</a>
+                        <a class="btn btn-outline-danger"
+                           href="{% url 'mail:client_delete' object.pk %}">Удалить</a>
+                    </div>
+                    <div class="card-footer m-2">
+                        <p class="text-sm-start">Добавил клиента: {{object.user|default:"-"}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
