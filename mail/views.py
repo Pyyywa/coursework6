@@ -8,7 +8,7 @@ from django.shortcuts import redirect, Http404
 from mail.forms import ContactForm, ClientForm, MailSettingsForm, \
     MailSettingsChangeStatus, MessageForm
 from mail.models import Client, MailSettings, Message, Logs
-from mail.services import my_job, get_cached_data, get_random_blog
+from mail.services import get_cached_data, get_random_blog
 
 
 class IndexView(TemplateView):
@@ -135,7 +135,6 @@ class MailSettingsCreateView(LoginRequiredMixin, PermissionRequiredMixin,
         self.object = form.save()
         self.object.user = self.request.user
         self.object.save()
-        my_job()
 
         return super().form_valid(form)
 

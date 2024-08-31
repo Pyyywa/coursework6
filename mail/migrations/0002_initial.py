@@ -10,24 +10,43 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('mail', '0001_initial'),
+        ("mail", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='mailsettings',
-            name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='create_mail', to=settings.AUTH_USER_MODEL, verbose_name='Добавил рассылку'),
+            model_name="mailsettings",
+            name="user",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="create_mail",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Добавил рассылку",
+            ),
         ),
         migrations.AddField(
-            model_name='logs',
-            name='mail',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='get_log', to='mail.mailsettings', verbose_name='рассылка'),
+            model_name="logs",
+            name="mail",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="get_log",
+                to="mail.mailsettings",
+                verbose_name="рассылка",
+            ),
         ),
         migrations.AddField(
-            model_name='client',
-            name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='create_client', to=settings.AUTH_USER_MODEL, verbose_name='добавил клиента'),
+            model_name="client",
+            name="user",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="create_client",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="добавил клиента",
+            ),
         ),
     ]

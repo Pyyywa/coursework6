@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import datetime
 from config import settings
 
 NULLABLE = {'blank': True, 'null': True}
@@ -51,7 +51,7 @@ class MailSettings(models.Model):
 
     message = models.ForeignKey('Message', on_delete=models.CASCADE,
                                 verbose_name='Сообщение')
-    start_time = models.DateTimeField(verbose_name='Время начала рассылки')
+    start_time = models.DateTimeField(verbose_name='Время начала рассылки', default=datetime.now())
     end_time = models.DateTimeField(verbose_name='Время окончания', **NULLABLE)
     period = models.CharField(max_length=50, choices=PERIOD_CHOICES,
                               verbose_name='Периодичность рассылки')

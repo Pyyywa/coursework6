@@ -7,19 +7,20 @@ class FormMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            if field_name != 'is_active' and field_name != 'client':
-                field.widget.attrs['class'] = 'form-control'
+            if field_name != "is_active" and field_name != "client":
+                field.widget.attrs["class"] = "form-control"
 
 
 class ContactForm(FormMixin, forms.Form):
     """
-        Форма для контактов.
+    Форма для контактов.
     """
 
-    name = forms.CharField(label='Имя', max_length=255)
-    email = forms.EmailField(label='Email')
-    content = forms.CharField(label='Сообщение', widget=forms.Textarea(
-        attrs={'cols': 60, 'rows': 10}))
+    name = forms.CharField(label="Имя", max_length=255)
+    email = forms.EmailField(label="Email")
+    content = forms.CharField(
+        label="Сообщение", widget=forms.Textarea(attrs={"cols": 60, "rows": 10})
+    )
 
 
 class MessageForm(FormMixin, forms.ModelForm):
@@ -29,7 +30,7 @@ class MessageForm(FormMixin, forms.ModelForm):
 
     class Meta:
         model = Message
-        fields = '__all__'
+        fields = "__all__"
 
 
 class ClientForm(FormMixin, forms.ModelForm):
@@ -39,7 +40,7 @@ class ClientForm(FormMixin, forms.ModelForm):
 
     class Meta:
         model = Client
-        exclude = ('user',)
+        exclude = ("user",)
 
 
 class MailSettingsForm(FormMixin, forms.ModelForm):
@@ -49,13 +50,14 @@ class MailSettingsForm(FormMixin, forms.ModelForm):
 
     class Meta:
         model = MailSettings
-        exclude = ('user', 'status')
-        help_texts = {'start_time': "Дата и время в формате: ДД.ММ.ГГГГ ЧЧ:ММ",
-                      'end_time': "Дата и время в формате: ДД.ММ.ГГГГ ЧЧ:ММ",
-                      }
+        exclude = ("user", "status")
+        help_texts = {
+            "start_time": "Дата и время в формате: ДД.ММ.ГГГГ ЧЧ:ММ",
+            "end_time": "Дата и время в формате: ДД.ММ.ГГГГ ЧЧ:ММ",
+        }
         widgets = {
-            'message': forms.Select,
-            'client': forms.CheckboxSelectMultiple,
+            "message": forms.Select,
+            "client": forms.CheckboxSelectMultiple,
         }
 
 
@@ -66,4 +68,4 @@ class MailSettingsChangeStatus(FormMixin, forms.ModelForm):
 
     class Meta:
         model = MailSettings
-        fields = ('status',)
+        fields = ("status",)

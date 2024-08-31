@@ -57,15 +57,12 @@ def my_job():
 
                 last_try_date = mail_log.order_by('-last_try').first().last_try
                 mail_period = mail_settings.period
-                if mail_period == MailSettings.PERIOD_DAILY:
-                    if (now - last_try_date).days >= 1:
-                        send_email(mail_settings)
-                elif mail_period == MailSettings.PERIOD_WEEKLY:
-                    if (now - last_try_date).days >= 7:
-                        send_email(mail_settings)
-                elif mail_period == MailSettings.PERIOD_MONTHLY:
-                    if (now - last_try_date).days >= 30:
-                        send_email(mail_settings)
+                if mail_period == MailSettings.PERIOD_DAILY and (now - last_try_date).days >= 1:
+                    send_email(mail_settings)
+                elif mail_period == MailSettings.PERIOD_WEEKLY and (now - last_try_date).days >= 7:
+                    send_email(mail_settings)
+                elif mail_period == MailSettings.PERIOD_MONTHLY and (now - last_try_date).days >= 30:
+                    send_email(mail_settings)
             else:
                 send_email(mail_settings)
 
